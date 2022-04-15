@@ -19,9 +19,8 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'black',
-  border: '1.5px solid #fab930',
-  boxShadow: 24,
+  bgcolor: '#2b463c',
+  boxShadow: 20,
   p: 4,
   // color: 'white',
 };
@@ -132,16 +131,16 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
 
 
             <Tabs value={value} onChange={handleTab} aria-label="basic tabs example">
-              <Tab sx={{color:"white"}} label="Movie Info" {...a11yProps(0)} />
-              <Tab sx={{color:"white"}} label="Cast" {...a11yProps(1)} />
+              <Tab sx={{color:"#f4f1e9"}} label="Movie Info" {...a11yProps(0)} />
+              <Tab sx={{color:"#f4f1e9"}} label="Cast" {...a11yProps(1)} />
             </Tabs>
 
           <TabPanel value={value} index={0}>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <div style={{backgroundColor: "#688f4e"}}>
+              <div>
                 <Grid container spacing={0} columns={4}>
                   <Grid item xs={1}>
-                    <p>Released: </p>
+                    <p style={{ color: "#f4f1e9"}}>Released: </p>
                   </Grid>
                   <Grid item xs={3}>
                     <p style={{ color: "#f4f1e9"}}>{release_date}</p>
@@ -150,7 +149,7 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
 
                 <Grid container spacing={0} columns={4}>
                   <Grid item xs={1}>
-                    <p>Rating: </p>
+                    <p style={{ color: "#f4f1e9"}}>Rating: </p>
                   </Grid>
                   <Grid item xs={3}>
                     <p style={{ color: "#f4f1e9"}}>{vote_average} ({vote_count} votes)</p>
@@ -159,7 +158,7 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
 
                 <Grid container spacing={0} columns={4}>
                   <Grid item xs={1}>
-                    <p>Story: </p>
+                    <p style={{ color: "#f4f1e9"}}>Story: </p>
                   </Grid>
                   <Grid item xs={3}>
                     <p style={{ color: "#f4f1e9"}}>{overview}</p>
@@ -179,8 +178,7 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
                   key={index}
                   data-id={member.id}
                   data-name={member.name}
-                  color="primary"
-                  sx={{textDecoration: "none", textTransform: "none", textAlign:'left', display:'flex', flexDirection:'row', whiteSpace:'nowrap'}}
+                  sx={{ color: "#f4f1e9", textDecoration: "none", textTransform: "none", textAlign:'left', display:'flex', flexDirection:'row', whiteSpace:'nowrap'}}
                 >{member.name} as <span style={{margin:1.5, padding: 1, textOverflow:'ellipsis', overflow: "hidden", whiteSpace:"nowrap"}}>{member.character}</span></Button>
               );
             })}

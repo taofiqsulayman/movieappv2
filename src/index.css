@@ -25,12 +25,15 @@ code {
 
 
 .header {
+  top: 0;
+  position: fixed;
   background-color: #2b463c;
   height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-left: 10px;
 }
 
 nav ul {
@@ -43,9 +46,9 @@ nav ul li {
 nav ul li a {
   text-decoration: none;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
-  padding: 01.2rem 0.6rem;
+  padding: 0.2rem 0.6rem;
   position: relative;
 }
 
@@ -68,7 +71,7 @@ nav ul li a:hover::before {
 nav ul li a:focus {
   background-color: #688f4e;
   opacity: 0.2px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 nav ul li a:focus::before {
@@ -82,7 +85,7 @@ nav ul li a:focus::before {
   box-shadow: 3px 3px 5px #b1d182;
   overflow: hidden;
   margin: 1rem;
-  width: 200px;
+  width: 250px;
 }
 
 .movie img {
@@ -104,7 +107,7 @@ nav ul li a:focus::before {
 
 .movie-title {
   align-items: center;
-  padding: 1.5 rem;
+  padding: 1 rem;
 }
 
 .movie-title h5 {
@@ -116,8 +119,22 @@ nav ul li a:focus::before {
 }
 
 .movie-container {
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
   flex-wrap: wrap;
 }
 
+@media (max-width: 700px){
+  .header {
+  height: fit-content;
+  display: flex;
+  }
 
+  nav ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+}

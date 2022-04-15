@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { Input } from '@mui/material';
+import { Container, Input } from '@mui/material';
 
 
 const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
@@ -102,7 +102,7 @@ if (loading) {
 
   return (
     <>
-      <div className="header">
+        <div className="header">
         <nav>
           <ul>
             <li><a href="#" onClick={popularMovies}>Popular</a></li>
@@ -112,37 +112,31 @@ if (loading) {
             <li><a href="#" onClick={discoverMovies}>Discover Movies</a></li>
           </ul>
         </nav>
-        <form>
-          <input type="text" className="inputText" placeholder="Enter Movie">
-          </input>
-          <a href='#'>{<SearchIcon fontSize='small' />}</a>
-        </form>
 
-        <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" sx={{ marginLeft: 1 }} >        
+        <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
               
-              <Input size="small" id='searchbox' 
+              <Input sx={{color: "#b1d182", border: 1, borderRadius: 1 }} size="small" id='searchbox' 
               onChange={handleChange} onSubmit={fetchSearch}/>
 
-              <Button aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
+              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }} aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
               </Button>
 
-              <Button sx={{color: "rgb(255, 136, 0)", border: 1, borderRadius: 1 }}  aria-label="search" 
+              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
               endIcon={<SearchIcon />} onClick={fetchSearch}>
               </Button>
 
             </ButtonGroup>
-
       </div>
+      
 
-      <div className="movie-container">
+        <div className="movie-container">
         {movies.length > 0 && 
         movies.map((movie) => (
         <Movie key={movie.id} {...movie} />
         ))}    
       </div>
-
-
       
+
     </>
   )
 }
