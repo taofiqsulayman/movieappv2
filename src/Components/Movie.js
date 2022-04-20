@@ -3,12 +3,13 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
+
+
 
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
@@ -102,13 +103,10 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
   };
 
 
-
-
-
-
   
   return (
-    <div className='movie'>
+
+      <div className='movie'>
       <div className="movie-title">
         <h5>{title}</h5>
       </div>
@@ -186,7 +184,7 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
           </TabPanel>
 
           <Button fullWidth 
-          sx={{color: "#b1d182", border: 1, borderRadius:1, textTransform: 'none' }}
+          sx={{color: "#b1d182", border: 1, borderRadius:1, textTransform: 'none', marginTop: 2 }}
           onClick={handleClose}>
             Close
           </Button>
@@ -197,10 +195,10 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
 
       <div className="movie-info">
         <h5>{release_date}</h5>
-        <FavoriteIcon sx={{ color: "grey", margin: 1 }}/>
       </div>
 
     </div>
+    
   );
 };
 

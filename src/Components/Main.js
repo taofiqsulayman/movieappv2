@@ -11,6 +11,21 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import { Container, Input } from '@mui/material';
 
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#688f4e"
+    },
+
+    secondary: {
+      main: "#b1d182"
+    }
+  }
+});
+
+
 const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 
 const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
@@ -102,40 +117,47 @@ if (loading) {
 
   return (
     <>
+      <ThemeProvider theme={theme}>
         <div className="header">
-        <nav>
-          <ul>
-            <li><a href="#" onClick={popularMovies}>Popular</a></li>
-            <li><a href="#" onClick={nowPlaying}>Now Playing</a></li>
-            <li><a href="#" onClick={getTrending}>Trending</a></li>
-            <li><a href="#" onClick={upcomingMovies}>Upcoming Movies</a></li>
-            <li><a href="#" onClick={discoverMovies}>Discover Movies</a></li>
-          </ul>
-        </nav>
+          <Container>
+            <div className='headercontent'>
+              <nav>
+                <ul>
+                  <li><a href="#" onClick={popularMovies}>Popular</a></li>
+                  <li><a href="#" onClick={nowPlaying}>Now Playing</a></li>
+                  <li><a href="#" onClick={getTrending}>Trending</a></li>
+                  <li><a href="#" onClick={upcomingMovies}>Upcoming Movies</a></li>
+                  <li><a href="#" onClick={discoverMovies}>Discover Movies</a></li>
+                </ul>
+              </nav>
 
-        <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
-              
-              <Input sx={{color: "#b1d182", border: 1, borderRadius: 1 }} size="small" id='searchbox' 
-              onChange={handleChange} onSubmit={fetchSearch}/>
+              <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
+                  
+                <Input sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 1.5 }} size="small"
+                onChange={handleChange} onSubmit={fetchSearch}/>
 
-              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }} aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
-              </Button>
+                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }} aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
+                </Button>
 
-              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
-              endIcon={<SearchIcon />} onClick={fetchSearch}>
-              </Button>
+                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
+                endIcon={<SearchIcon />} onClick={fetchSearch}>
+                </Button>
 
-            </ButtonGroup>
-      </div>
+              </ButtonGroup>
+            </div>
+          </Container>             
+        </div>
       
-
-        <div className="movie-container">
-        {movies.length > 0 && 
-        movies.map((movie) => (
-        <Movie key={movie.id} {...movie} />
-        ))}    
-      </div>
-      
+        <Container>
+          <div className="movie-container">
+            {movies.length > 0 && 
+            movies.map((movie) => (
+            <Movie key={movie.id} {...movie} />
+            ))}    
+          </div>
+        </Container>
+      </ThemeProvider>
+        
 
     </>
   )
