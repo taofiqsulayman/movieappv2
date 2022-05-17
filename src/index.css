@@ -135,13 +135,50 @@ nav ul li a:focus::before {
 
 @media (max-width: 700px){
   .header {
-  height: fit-content;
+  height: 150px;
   display: flex;
+  align-items: flex-start;
+  }
+
+  .headercontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  nav {
+    padding-bottom: 10px;
   }
 
   nav ul {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+  }
+
+  nav ul li {
+    list-style: none;
+    margin-right: 0;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    position: relative;
+  }
+
+  nav ul li a::before {
+    display: none;
+  }
+
+  .movie-container {
+    padding-top: 160px;
+    padding-left: 13%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
 }
