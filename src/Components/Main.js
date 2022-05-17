@@ -118,7 +118,9 @@ if (loading) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <div className="header">
+
+        <div className='desktop'>
+                  <div className="header">
           <Container>
             <div className='headercontent'>
               <nav>
@@ -156,6 +158,15 @@ if (loading) {
             ))}    
           </div>
         </Container>
+        </div>
+
+        <div className='mobile'>
+          <Container>
+            <h1>MOBILE VIEW UNDER CONSTRUCTION</h1> <br/>
+            <h2>Kindly Use a Desktop/Laptop Browser for Better Experience</h2>
+          </Container>
+        </div>
+
       </ThemeProvider>
         
 

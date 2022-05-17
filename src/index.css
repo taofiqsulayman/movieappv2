@@ -133,8 +133,20 @@ nav ul li a:focus::before {
   flex-wrap: wrap;
 }
 
+@media (min-width: 700px) {
+  .mobile{
+    display: none;
+  }
+}
+
 @media (max-width: 700px){
-  .header {
+
+  .desktop {
+    display: none;
+  }
+
+
+  /* .header {
   height: 150px;
   display: flex;
   align-items: flex-start;
@@ -179,6 +191,6 @@ nav ul li a:focus::before {
     padding-left: 13%;
     display: flex;
     flex-wrap: wrap;
-  }
+  } */
 
 }
