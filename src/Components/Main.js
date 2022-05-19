@@ -199,7 +199,7 @@ if (loading) {
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
                   <>
-                    <Button color='secondary' variant="outlined" {...bindTrigger(popupState)}>
+                    <Button color='secondary' variant="text" {...bindTrigger(popupState)}>
                       <MenuIcon fontSize='small'/>
                     </Button>
                     <Menu {...bindMenu(popupState)}>
@@ -214,11 +214,12 @@ if (loading) {
                 )}
               </PopupState>
 
-              <Button size='small' color='secondary' variant="outlined" endIcon={<HomeIcon />} onClick={goHome}>Home</Button>
+              <Button size='small' color='secondary' variant="text" endIcon={<HomeIcon />} onClick={goHome}>Home</Button>
 
+              <div className='mb-btn-grp'>
               <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
                 
-              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 2 }} size="small"
+              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em" }} size="small"
               onChange={handleChange} onSubmit={fetchSearch}/>
 
               <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
@@ -226,6 +227,9 @@ if (loading) {
               </Button>
 
               </ButtonGroup>
+              </div>
+
+
 
             </div>
 

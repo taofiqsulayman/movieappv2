@@ -164,9 +164,9 @@ nav ul li a:focus::before {
     padding-top: 10px;
   }
 
-  .mobbtngrp {
+  .mb-btn-grp {
 
-    padding-right: 20px;
+    margin-left: 20px;
 
   }
 
