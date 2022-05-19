@@ -218,9 +218,6 @@ if (loading) {
                 <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 2 }} size="small"
                 onChange={handleChange} onSubmit={fetchSearch}/>
 
-                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }} aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
-                </Button>
-
                 <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
                 endIcon={<SearchIcon />} onClick={fetchSearch}>
                 </Button>
