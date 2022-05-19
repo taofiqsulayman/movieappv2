@@ -23,7 +23,13 @@ code {
     monospace;
 }
 
-
+#page-title {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2b463c;
+  margin-top: 85px;
+  margin-left: 30%;
+}
 
 .header {
   top: 0;
@@ -39,6 +45,7 @@ code {
 
 .headercontent {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -49,7 +56,14 @@ nav ul li {
   list-style: none;
   margin-right: 1rem;
 }
-nav ul li a {
+
+/* .dkbtngrp {
+  padding-left: 20px;
+
+} */
+
+
+/* nav ul li a {
   text-decoration: none;
   color: white;
   font-size: 1rem;
@@ -82,7 +96,7 @@ nav ul li a:focus {
 
 nav ul li a:focus::before {
   width: 0%;
-}
+} */
 
 
 .movie {
@@ -96,7 +110,7 @@ nav ul li a:focus::before {
 
 .movie img {
   width: 100%;
-  height: 370px;
+  height: 300px;
 }
 
 .movie-info {
@@ -126,71 +140,90 @@ nav ul li a:focus::before {
 }
 
 .movie-container {
-  padding-top: 100px;
+  padding-top: 5px;
   /* padding-left: 5%;
   padding-right: 5%; */
   display: flex;
   flex-wrap: wrap;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 720px) {
   .mobile{
     display: none;
   }
 }
 
-@media (max-width: 700px){
+@media (max-width: 719px){
 
   .desktop {
     display: none;
   }
 
-
-  /* .header {
-  height: 150px;
-  display: flex;
-  align-items: flex-start;
+  .header {
+    height: 60px;
+    padding-top: 10px;
   }
 
-  .headercontent {
+  .mobbtngrp {
+
+    padding-right: 20px;
+
+  }
+
+  #page-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #2b463c;
+    margin-top: 70px;
+    margin-left: 30%;
+  }
+
+  .movie {
+
+    width: 130px;
+  }
+  
+  .movie img {
+    width: 100%;
+    height: 155px;
+  }
+
+  .movie-title h5 {
+    font-size: 0.8rem;
+    margin: 0.5rem;
+  }
+
+  .movie-info h5 {
+    font-size: 0.8rem;
+    margin: 0.5rem;
+  }
+  
+  .movie-container {
+    padding-top: 5px;
+    /* padding-left: 5%;
+    padding-right: 5%; */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
-  nav {
-    padding-bottom: 10px;
-  }
+}
+
+@media (max-width: 1024px){
 
   nav ul {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
   }
 
   nav ul li {
-    list-style: none;
     margin-right: 0;
   }
 
   nav ul li a {
-    text-decoration: none;
-    color: white;
+
     font-size: 0.8rem;
     font-weight: bold;
-    padding: 0.4rem 0.8rem;
-    position: relative;
+    padding: 0;
+
   }
-
-  nav ul li a::before {
-    display: none;
-  }
-
-  .movie-container {
-    padding-top: 160px;
-    padding-left: 13%;
-    display: flex;
-    flex-wrap: wrap;
-  } */
-
 }
