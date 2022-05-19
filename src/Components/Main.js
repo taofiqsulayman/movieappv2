@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -198,7 +199,7 @@ if (loading) {
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (
                   <>
-                    <Button variant="contained" {...bindTrigger(popupState)}>
+                    <Button color='secondary' variant="outlined" {...bindTrigger(popupState)}>
                       <MenuIcon fontSize='small'/>
                     </Button>
                     <Menu {...bindMenu(popupState)}>
@@ -213,18 +214,18 @@ if (loading) {
                 )}
               </PopupState>
 
-                <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
-                  
-                <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 2 }} size="small"
-                onChange={handleChange} onSubmit={fetchSearch}/>
+              <Button size='small' color='secondary' variant="outlined" endIcon={<HomeIcon />} onClick={goHome}>Home</Button>
 
-                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
-                endIcon={<SearchIcon />} onClick={fetchSearch}>
-                </Button>
+              <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
+                
+              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 2 }} size="small"
+              onChange={handleChange} onSubmit={fetchSearch}/>
 
-                </ButtonGroup>
+              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
+              endIcon={<SearchIcon />} onClick={fetchSearch}>
+              </Button>
 
-              
+              </ButtonGroup>
 
             </div>
 
