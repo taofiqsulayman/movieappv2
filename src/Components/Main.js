@@ -92,6 +92,7 @@ const fetchSearch = (e) => {
     getMovies (SEARCH_API + searchTerm);
 
     document.getElementById('page-title').innerText = "Search Results";
+    document.getElementById('mpage-title').innerText = "Search Results";
   }
   setSearchTerm("");
 
@@ -102,35 +103,41 @@ const goHome = (e) => {
   getMovies (FEATURED_API);
 
   document.getElementById('page-title').innerText = "Featured Movies";
+  document.getElementById('mpage-title').innerText = "Featured Movies";
 }
 
 const nowPlaying = (e) => {
   getMovies(NOW_PLAYING);
 
   document.getElementById('page-title').innerText = " Now Playing in Theatres";
+  document.getElementById('mpage-title').innerText = " Now Playing in Theatres";
 }
 
 const getTrending = (e) => {
   getMovies(TRENDING);
 
   document.getElementById('page-title').innerText = "Trending Movies";
+  document.getElementById('mpage-title').innerText = "Trending Movies";
 }
 
 const popularMovies = (e) => {
   getMovies(POPULAR);
 
   document.getElementById('page-title').innerText = "Popular Movies";
+  document.getElementById('mpage-title').innerText = "Popular Movies";
 }
 
 const discoverMovies = (e) => {
   getMovies(DISCOVER_MOVIES);
   document.getElementById('page-title').innerText = "Discover New Movies";
+  document.getElementById('mpage-title').innerText = "Discover New Movies";
 }
 
 const upcomingMovies = (e) => {
   getMovies(UPCOMING_MOVIES);
 
   document.getElementById('page-title').innerText = "Upcoming Movies";
+  document.getElementById('mpage-title').innerText = "Upcoming Movies";
 }
 
 if (loading) {
@@ -219,7 +226,7 @@ if (loading) {
               <div className='mb-btn-grp'>
               <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
                 
-              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em" }} size="small"
+              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.2em" }} size="small"
               onChange={handleChange} onSubmit={fetchSearch}/>
 
               <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
@@ -240,7 +247,7 @@ if (loading) {
 
 
           <Container>
-            <div id='page-title'> </div>
+            <div id='mpage-title'> </div>
             
             <div className="movie-container">
               {movies.length > 0 && 

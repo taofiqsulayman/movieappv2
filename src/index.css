@@ -170,12 +170,12 @@ nav ul li a:focus::before {
 
   }
 
-  #page-title {
+  #mpage-title {
     font-weight: bold;
     font-size: 1rem;
     color: #2b463c;
-    margin-top: 70px;
-    margin-left: 30%;
+    margin-top: 60px;
+    margin-left: 35%;
   }
 
   .movie {
@@ -199,7 +199,7 @@ nav ul li a:focus::before {
   }
   
   .movie-container {
-    padding-top: 5px;
+    padding-top: 0;
     /* padding-left: 5%;
     padding-right: 5%; */
     display: flex;
