@@ -137,7 +137,7 @@ const fetchSearch = (e) => {
   if (searchTerm) {
     getMovies (SEARCH_API + searchTerm);
 
-    document.getElementById('page-title').innerText = `Search Results for ${searchTerm}`;
+    document.getElementById('page-title').innerText = `Search Results for: ${searchTerm}`;
   }
   setSearchTerm("");
 
@@ -262,7 +262,7 @@ if (loading) {
             </Drawer>
           </AppBar>
 
-          <div id='page-title'> </div>
+          <Typography id='page-title' variant='body2' sx={{color:"#ffd300" }}> </Typography>
             
           <div className="movie-container">
             {movies.length > 0 && 
