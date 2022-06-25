@@ -3,17 +3,11 @@ import { useEffect, useState } from 'react';
 
 import Movie from './Movie';
 import Loading from './Loading';
-import Mobilemovie from './MobileMovie';
 
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
-import BackspaceIcon from '@mui/icons-material/Backspace';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import { Container, Input } from '@mui/material';
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { AppBar, Container, InputBase, Typography, styled, Toolbar, Box, InputAdornment, List, ListItem, Drawer, Divider } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
@@ -25,14 +19,66 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#688f4e"
+      main: "#020f14"
     },
 
     secondary: {
-      main: "#b1d182"
+      main: "#ffffff"
+    },
+
+    other: {
+      main: "#ffd300"
+    }
+  },
+
+  components: {
+    MuiTab: {
+      styleOverrides: {
+        root:{
+          "&.Mui-selected": {
+            backgroundColor: "#ffffff",
+            color: '#020f14',
+            borderRadius: "10px"
+          }
+        }
+      }
     }
   }
+
 });
+
+const StyledToolbar = styled(Toolbar)({
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+const UserBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  [theme.breakpoints.up("md")]: {
+    display: "none",
+  },
+}));
+
+const Categories = styled(Box)(({ theme }) => ({
+  display: "none",
+  alignItems: "center",
+  gap: "5px",
+  [theme.breakpoints.up("md")]: {
+    display: "flex",
+  },
+}));
+
+const Search = styled("div")(({ theme }) => ({
+  backgroundColor: "white",
+  padding: "0 5px",
+  borderRadius: theme.shape.borderRadius,
+  width: "30%",
+  display: "flex",
+  alignItems: "center",
+  gap: "2px"
+}));
 
 
 const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
@@ -54,7 +100,7 @@ const Main = () => {
 
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
 
 
@@ -91,8 +137,7 @@ const fetchSearch = (e) => {
   if (searchTerm) {
     getMovies (SEARCH_API + searchTerm);
 
-    document.getElementById('page-title').innerText = "Search Results";
-    document.getElementById('mpage-title').innerText = "Search Results";
+    document.getElementById('page-title').innerText = `Search Results for ${searchTerm}`;
   }
   setSearchTerm("");
 
@@ -102,43 +147,62 @@ const fetchSearch = (e) => {
 const goHome = (e) => {
   getMovies (FEATURED_API);
 
-  document.getElementById('page-title').innerText = "Featured Movies";
-  document.getElementById('mpage-title').innerText = "Featured Movies";
+  document.getElementById('searchbox').value = '';
+  document.getElementById('page-title').innerText = "";
 }
 
 const nowPlaying = (e) => {
   getMovies(NOW_PLAYING);
 
   document.getElementById('page-title').innerText = " Now Playing in Theatres";
-  document.getElementById('mpage-title').innerText = " Now Playing in Theatres";
+  document.getElementById('searchbox').value = '';
 }
 
 const getTrending = (e) => {
   getMovies(TRENDING);
 
   document.getElementById('page-title').innerText = "Trending Movies";
-  document.getElementById('mpage-title').innerText = "Trending Movies";
+  document.getElementById('searchbox').value = '';
 }
 
 const popularMovies = (e) => {
   getMovies(POPULAR);
 
   document.getElementById('page-title').innerText = "Popular Movies";
-  document.getElementById('mpage-title').innerText = "Popular Movies";
+  document.getElementById('searchbox').value = '';
 }
 
 const discoverMovies = (e) => {
   getMovies(DISCOVER_MOVIES);
   document.getElementById('page-title').innerText = "Discover New Movies";
-  document.getElementById('mpage-title').innerText = "Discover New Movies";
+  document.getElementById('searchbox').value = '';
 }
 
 const upcomingMovies = (e) => {
   getMovies(UPCOMING_MOVIES);
 
   document.getElementById('page-title').innerText = "Upcoming Movies";
-  document.getElementById('mpage-title').innerText = "Upcoming Movies";
+  document.getElementById('searchbox').value = '';
 }
+
+
+const list = () => (
+  <List>
+    <ListItem onClick={()=>{ setOpen(false); goHome() }}>Home</ListItem>
+    <Divider/>
+    <ListItem onClick={()=>{ setOpen(false); nowPlaying() }}>Now Playing</ListItem>
+    <Divider/>
+    <ListItem onClick={()=>{ setOpen(false); getTrending() }}>Trending</ListItem>
+    <Divider/>
+    <ListItem onClick={()=>{ setOpen(false); popularMovies() }}>Popular Movies</ListItem>
+    <Divider/>
+    <ListItem onClick={()=>{ setOpen(false); discoverMovies() }}>Discover Movies</ListItem>
+    <Divider/>
+    <ListItem onClick={()=>{ setOpen(false); upcomingMovies() }}>Upcoming Movies</ListItem>
+    <Divider/>
+  </List>
+)
+
 
 if (loading) {
   return (
@@ -152,42 +216,51 @@ if (loading) {
     <>
       <ThemeProvider theme={theme}>
 
-        <div className='desktop'>
-          <div className="header">
-          <Container>
-            <div className='headercontent'>
-              <nav>
-                <ul>
-                  <li><Button variant="text" color='secondary' onClick={popularMovies}>Popular</Button></li>
-                  <li><Button variant="text" color='secondary' onClick={nowPlaying}>Now Playing</Button></li>
-                  <li><Button variant="text" color='secondary' onClick={getTrending}>Trending</Button></li>
-                  <li><Button variant="text" color='secondary' onClick={upcomingMovies}>Upcoming Movies</Button></li>
-                  <li><Button variant="text" color='secondary' onClick={discoverMovies}>Discover Movies</Button></li>
-                </ul>
-              </nav>
-        
-                <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
-                  
-                <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.15em", paddingLeft: 1.5 }} size="small"
-                onChange={handleChange} onSubmit={fetchSearch}/>
+        <Container maxWidth="xl">
+          <AppBar position="sticky">
+            <StyledToolbar>
+              <Button color='secondary' variant="text" sx={{ display: { xs: "none", sm: "block" } }} onClick={goHome}>
+                <Typography variant='h6'>MOVIES</Typography>
+              </Button>
+              {/* <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}> MOVIES </Typography> */}
+              <HomeIcon  onClick={goHome} sx={{ display: { xs: "block", sm: "none" } }} />
 
-                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }} aria-label="delete" endIcon={<BackspaceIcon />} onClick={clearSearch}>
-                </Button>
+              <Categories>
+                <Button variant="text" color='secondary' onClick={popularMovies}>Popular</Button>
+                <Button variant="text" color='secondary' onClick={nowPlaying}>Now Playing</Button>
+                <Button variant="text" color='secondary' onClick={getTrending}>Trending</Button>
+                <Button variant="text" color='secondary' onClick={upcomingMovies}>Upcoming Movies</Button>
+                <Button variant="text" color='secondary' onClick={discoverMovies}>Discover Movies</Button>
+              </Categories>
 
-                <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
-                endIcon={<SearchIcon />} onClick={fetchSearch}>
-                </Button>
+              <Search>
+                <InputBase fullWidth sx={{letterSpacing: "0.2em"}} id='searchbox' onChange={handleChange} onSubmit={fetchSearch} placeholder="search..."
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch}/>
+                  </InputAdornment>
+                }
+                />
+                  {/* <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch} />
+                  <BackspaceIcon onClick={clearSearch} /> */}
+              </Search>
 
-              </ButtonGroup>
+              <UserBox onClick={(e) => setOpen(true)}>
+                <MenuIcon />
+              </UserBox>
 
-              
-            </div>
-          </Container>             
-        </div>
-
-
-      
-        <Container>
+            </StyledToolbar>
+            <Drawer
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              sx={{backgroundColor:"transparent"}}
+              anchor='right'
+              open={open}
+              onClose={(e) => setOpen(false)}
+            >
+              {list()}
+            </Drawer>
+          </AppBar>
 
           <div id='page-title'> </div>
             
@@ -197,67 +270,8 @@ if (loading) {
             <Movie key={movie.id} {...movie} />
             ))}    
           </div>
+
         </Container>
-        </div>
-
-        <div className='mobile'>
-          <Container className='header'>
-            <div className='headercontent'>
-              <PopupState variant="popover" popupId="demo-popup-menu">
-                {(popupState) => (
-                  <>
-                    <Button color='secondary' variant="text" {...bindTrigger(popupState)}>
-                      <MenuIcon fontSize='small'/>
-                    </Button>
-                    <Menu {...bindMenu(popupState)}>
-                      <MenuItem onClick={()=>{ popupState.close(); goHome() }}>Home</MenuItem>
-                      <MenuItem onClick={()=>{ popupState.close(); nowPlaying() }}>Now Playing</MenuItem>
-                      <MenuItem onClick={()=>{ popupState.close(); getTrending() }}>Trending</MenuItem>
-                      <MenuItem onClick={()=>{ popupState.close(); popularMovies() }}>Popular Movies</MenuItem>
-                      <MenuItem onClick={()=>{ popupState.close(); discoverMovies() }}>Discover Movies</MenuItem>
-                      <MenuItem onClick={()=>{ popupState.close(); upcomingMovies() }}>Upcoming Movies</MenuItem>
-                    </Menu>
-                  </>
-                )}
-              </PopupState>
-
-              <Button size='small' color='secondary' variant="text" endIcon={<HomeIcon />} onClick={goHome}>Home</Button>
-
-              <div className='mb-btn-grp'>
-              <ButtonGroup size="small" variant="outlined" aria-label="outlined button group" >        
-                
-              <Input id='searchbox' sx={{color: "#b1d182", border: 1, borderRadius: 1, letterSpacing: "0.2em" }} size="small"
-              onChange={handleChange} onSubmit={fetchSearch}/>
-
-              <Button sx={{color: "#b1d182", border: 1, borderRadius: 1 }}  aria-label="search" 
-              endIcon={<SearchIcon />} onClick={fetchSearch}>
-              </Button>
-
-              </ButtonGroup>
-              </div>
-
-
-
-            </div>
-
-          </Container>
-
-          
-
-
-
-          <Container>
-            <div id='mpage-title'> </div>
-            
-            <div className="movie-container">
-              {movies.length > 0 && 
-              movies.map((movie) => (
-              <Mobilemovie key={movie.id} {...movie} />
-              ))}    
-            </div>
-          </Container>
-
-        </div>
 
       </ThemeProvider>
         

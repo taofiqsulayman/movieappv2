@@ -7,7 +7,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
-import { Button } from '@mui/material';
+import { Button, Badge, styled } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -19,8 +20,10 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: '#2b463c',
+  minWidth: 290,
+  maxWidth: "60%",
+  maxHeight: "80%",
+  bgcolor: '#020f14',
   boxShadow: 20,
   p: 4,
   // color: 'white',
@@ -61,7 +64,14 @@ function a11yProps(index) {
 }
 
 
-
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: '4%',
+    top: '5%',
+    border: `1px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 
 
@@ -102,20 +112,17 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
     });
   };
 
-
+// think of a function for rating and also for images
   
   return (
 
-      <div className='movie'>
-      <div className="movie-title">
-        <h5>{title}</h5>
-      </div>
-
+    <StyledBadge badgeContent={vote_average} color="other">
+      <div className='movie' >
+        
       <div>
-
         <img src={IMG_API + poster_path} alt={title} onClick={handleOpen} />
 
-        <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -123,22 +130,27 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
         >
 
         <Box sx={style}>
-            <Typography id="modal-modal-title" sx={{ color: "#f4f1e9" }} variant="h6" component="h2">
+          <Box display ='flex' justifyContent='space-between' >
+            <Typography id="modal-modal-title" sx={{ color: "white" }} variant="h6" component="h2">
               {title}
             </Typography>
 
+            <CloseIcon sx={{color: "white" }} onClick={handleClose} />
+          </Box>
 
-            <Tabs value={value} onChange={handleTab} aria-label="basic tabs example">
-              <Tab sx={{color:"#f4f1e9"}} label="Movie Info" {...a11yProps(0)} />
-              <Tab sx={{color:"#f4f1e9"}} label="Cast" {...a11yProps(1)} />
-            </Tabs>
+
+
+          <Tabs value={value} onChange={handleTab} aria-label="basic tabs example">
+              <Tab sx={{color:"#ffffff" }} label="Movie Info" {...a11yProps(0)} />
+              <Tab sx={{color:"#ffffff" }} label="Cast" {...a11yProps(1)} />
+          </Tabs>
 
           <TabPanel value={value} index={0}>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div>
                 <Grid container spacing={0} columns={4}>
                   <Grid item xs={1}>
-                    <p style={{ color: "#f4f1e9"}}>Released: </p>
+                    <p style={{ color: "#f4f1e9"}}>Date: </p>
                   </Grid>
                   <Grid item xs={3}>
                     <p style={{ color: "#f4f1e9"}}>{release_date}</p>
@@ -159,7 +171,10 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
                     <p style={{ color: "#f4f1e9"}}>Story: </p>
                   </Grid>
                   <Grid item xs={3}>
-                    <p style={{ color: "#f4f1e9"}}>{overview}</p>
+                    <Box sx={{
+                      width: "xs", color: "#f4f1e9"
+                    }}> {overview} </Box>
+
                   </Grid>
                 </Grid>
               </div>
@@ -182,22 +197,19 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
             })}
           </>
           </TabPanel>
-
-          <Button fullWidth 
-          sx={{color: "#b1d182", border: 1, borderRadius:1, textTransform: 'none', marginTop: 2 }}
-          onClick={handleClose}>
-            Close
-          </Button>
           
         </Box>
       </Modal>
       </div>
 
-      <div className="movie-info">
-        <h5>{release_date}</h5>
+      <div className="movie-title">
+        <h5>{title}</h5>
       </div>
 
     </div>
+    </StyledBadge>
+
+
     
   );
 };
