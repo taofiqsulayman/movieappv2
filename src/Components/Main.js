@@ -231,8 +231,8 @@ if (loading) {
           <Container>
             <AppBar position="sticky">
               <StyledToolbar>
-                <Button color='secondary' variant="text" sx={{ display: { xs: "none", sm: "block" } }} onClick={goHome}>
-                  <Typography ml={0} variant='h6'>MOVIES</Typography>
+                <Button color='other' variant="text" sx={{ display: { xs: "none", sm: "block" }, textTransform: 'none' }} onClick={goHome}>
+                  <Typography ml={0} variant='h6'>TMDb</Typography>
                 </Button>
                 {/* <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}> MOVIES </Typography> */}
                 <HomeIcon  onClick={goHome} sx={{ display: { xs: "block", sm: "none" } }} />
