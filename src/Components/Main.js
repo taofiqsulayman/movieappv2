@@ -7,12 +7,13 @@ import Loading from './Loading';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 
-import { AppBar, Container, InputBase, Typography, styled, Toolbar, Box, InputAdornment, List, ListItem, Drawer, Divider } from '@mui/material';
+import { AppBar, Container, InputBase, Typography, styled, Toolbar, Box, InputAdornment, List, ListItem, Drawer, Divider, } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 
 
@@ -81,6 +82,7 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 
+
 const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 
 const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
@@ -103,7 +105,6 @@ const Main = () => {
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
 
-
   const getMovies = (API) => {
     fetch(API) 
     .then((res) => res.json())
@@ -125,11 +126,11 @@ const handleChange = (e) => {
   setSearchTerm(e.target.value);
 }
 
-const clearSearch = (e) => {
-  document.getElementById('searchbox').value = '';
-  document.getElementById('searchbox').innerText = "";
-  goHome();
-}
+// const clearSearch = (e) => {
+//   document.getElementById('searchbox').value = '';
+//   document.getElementById('searchbox').innerText = "";
+//   goHome();
+// }
 
 const fetchSearch = (e) => {
   e.preventDefault();
@@ -143,6 +144,15 @@ const fetchSearch = (e) => {
 
 
 };
+
+
+const handleKeypress = (e) => {
+  //it triggers by pressing the enter key
+if (e.keyCode === 13 || e.key === "Enter") {
+  fetchSearch();
+}
+};
+
 
 const goHome = (e) => {
   getMovies (FEATURED_API);
@@ -234,10 +244,10 @@ if (loading) {
               </Categories>
 
               <Search>
-                <InputBase fullWidth sx={{letterSpacing: "0.2em"}} id='searchbox' onChange={handleChange} onSubmit={fetchSearch} placeholder="search..."
+                <InputBase fullWidth sx={{letterSpacing: "0.2em"}} id='searchbox' onChange={handleChange} onKeyDown={handleKeypress} placeholder="search..."
                 endAdornment={
                   <InputAdornment position="end">
-                    <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch}/>
+                    <SearchIcon sx={{ color: 'secondary', cursor: "pointer" }} onClick={fetchSearch}/>
                   </InputAdornment>
                 }
                 />
@@ -257,19 +267,27 @@ if (loading) {
               anchor='right'
               open={open}
               onClose={(e) => setOpen(false)}
+              PaperProps={{
+                elevation: 8,
+                sx: {
+                  // width: 240,
+                  fontWeight: 'bold',
+                  height: 300,
+                  color: "secondary.main",
+                  backgroundColor: "primary.main"
+                }
+              }}
             >
               {list()}
             </Drawer>
           </AppBar>
 
-          <Typography id='page-title' variant='body2' sx={{color:"#ffd300" }}> </Typography>
-            
-          <div className="movie-container">
-            {movies.length > 0 && 
+          <Typography id='page-title' variant='h6' sx={{color:"#ffd300" }}> </Typography>
+
+          {movies.length > 0 && 
             movies.map((movie) => (
             <Movie key={movie.id} {...movie} />
-            ))}    
-          </div>
+            ))} 
 
         </Container>
 

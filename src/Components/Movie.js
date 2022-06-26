@@ -20,7 +20,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: 290,
+  minWidth: 280,
   maxWidth: "60%",
   maxHeight: "80%",
   bgcolor: '#020f14',
