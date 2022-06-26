@@ -171,8 +171,8 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
                     <p style={{ color: "#f4f1e9"}}>Story: </p>
                   </Grid>
                   <Grid item xs={3}>
-                    <Box sx={{
-                      width: "xs", color: "#f4f1e9"
+                    <Box component="div" sx={{
+                      width: "xs", color: "#f4f1e9", textOverflow: 'ellipsis'
                     }}> {overview} </Box>
 
                   </Grid>

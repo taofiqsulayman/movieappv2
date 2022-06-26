@@ -146,12 +146,12 @@ const fetchSearch = (e) => {
 };
 
 
-const handleKeypress = (e) => {
-  //it triggers by pressing the enter key
-if (e.keyCode === 13 || e.key === "Enter") {
-  fetchSearch();
-}
-};
+// const handleKeypress = (e) => {
+//   //it triggers by pressing the enter key
+// if (e.keyCode === 13 || e.key === "Enter") {
+//   fetchSearch();
+// }
+// };
 
 
 const goHome = (e) => {
@@ -226,68 +226,80 @@ if (loading) {
     <>
       <ThemeProvider theme={theme}>
 
-        <Container maxWidth="xl">
-          <AppBar position="sticky">
-            <StyledToolbar>
-              <Button color='secondary' variant="text" sx={{ display: { xs: "none", sm: "block" } }} onClick={goHome}>
-                <Typography variant='h6'>MOVIES</Typography>
-              </Button>
-              {/* <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}> MOVIES </Typography> */}
-              <HomeIcon  onClick={goHome} sx={{ display: { xs: "block", sm: "none" } }} />
+        <Container>
 
-              <Categories>
-                <Button variant="text" color='secondary' onClick={popularMovies}>Popular</Button>
-                <Button variant="text" color='secondary' onClick={nowPlaying}>Now Playing</Button>
-                <Button variant="text" color='secondary' onClick={getTrending}>Trending</Button>
-                <Button variant="text" color='secondary' onClick={upcomingMovies}>Upcoming Movies</Button>
-                <Button variant="text" color='secondary' onClick={discoverMovies}>Discover Movies</Button>
-              </Categories>
+          <Container>
+            <AppBar position="sticky">
+              <StyledToolbar>
+                <Button color='secondary' variant="text" sx={{ display: { xs: "none", sm: "block" } }} onClick={goHome}>
+                  <Typography ml={0} variant='h6'>MOVIES</Typography>
+                </Button>
+                {/* <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}> MOVIES </Typography> */}
+                <HomeIcon  onClick={goHome} sx={{ display: { xs: "block", sm: "none" } }} />
 
-              <Search>
-                <InputBase fullWidth sx={{letterSpacing: "0.2em"}} id='searchbox' onChange={handleChange} onKeyDown={handleKeypress} placeholder="search..."
-                endAdornment={
-                  <InputAdornment position="end">
-                    <SearchIcon sx={{ color: 'secondary', cursor: "pointer" }} onClick={fetchSearch}/>
-                  </InputAdornment>
-                }
-                />
-                  {/* <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch} />
-                  <BackspaceIcon onClick={clearSearch} /> */}
-              </Search>
+                <Categories>
+                  <Button variant="text" color='secondary' onClick={popularMovies}>Popular</Button>
+                  <Button variant="text" color='secondary' onClick={nowPlaying}>Now Playing</Button>
+                  <Button variant="text" color='secondary' onClick={getTrending}>Trending</Button>
+                  <Button variant="text" color='secondary' onClick={upcomingMovies}>Upcoming Movies</Button>
+                  <Button variant="text" color='secondary' onClick={discoverMovies}>Discover Movies</Button>
+                </Categories>
 
-              <UserBox onClick={(e) => setOpen(true)}>
-                <MenuIcon />
-              </UserBox>
+                <Search>
+                  <InputBase fullWidth sx={{letterSpacing: "0.2em"}} id='searchbox' onChange={handleChange} placeholder="search..."
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <SearchIcon sx={{ color: 'secondary', cursor: "pointer" }} onClick={fetchSearch}/>
+                    </InputAdornment>
+                  }
+                  />
+                    {/* <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch} />
+                    <BackspaceIcon onClick={clearSearch} /> */}
+                </Search>
 
-            </StyledToolbar>
-            <Drawer
-              id="demo-positioned-menu"
-              aria-labelledby="demo-positioned-button"
-              sx={{backgroundColor:"transparent"}}
-              anchor='right'
-              open={open}
-              onClose={(e) => setOpen(false)}
-              PaperProps={{
-                elevation: 8,
-                sx: {
-                  // width: 240,
-                  fontWeight: 'bold',
-                  height: 300,
-                  color: "secondary.main",
-                  backgroundColor: "primary.main"
-                }
-              }}
-            >
-              {list()}
-            </Drawer>
-          </AppBar>
+                <UserBox onClick={(e) => setOpen(true)}>
+                  <MenuIcon />
+                </UserBox>
 
-          <Typography id='page-title' variant='h6' sx={{color:"#ffd300" }}> </Typography>
+              </StyledToolbar>
+              <Drawer
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                sx={{backgroundColor:"transparent"}}
+                anchor='right'
+                open={open}
+                onClose={(e) => setOpen(false)}
+                PaperProps={{
+                  elevation: 8,
+                  sx: {
+                    // width: 240,
+                    fontWeight: 'bold',
+                    height: 300,
+                    color: "secondary.main",
+                    backgroundColor: "primary.main"
+                  }
+                }}
+              >
+                {list()}
+              </Drawer>
+            </AppBar>
 
-          {movies.length > 0 && 
+            
+          </Container>
+
+          <div className='container'>
+            <Typography id='page-title' variant='h6' sx={{color:"#ffd300" }}> </Typography>
+          </div>
+
+
+          <div className='container' >
+            {movies.length > 0 && 
             movies.map((movie) => (
             <Movie key={movie.id} {...movie} />
             ))} 
+          </div>
+
+
 
         </Container>
 

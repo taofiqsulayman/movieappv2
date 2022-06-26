@@ -30,8 +30,67 @@ code {
 }
 
 
+.movie {
+  background-color: #020f14;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px #ffffff;
+  overflow: hidden;
+  margin: 0.5rem;
+  width: 240px;
+}
 
-.header {
+.movie img {
+  width: 100%;
+  height: 300px;
+}
+
+
+
+.movie-title {
+  align-items: center;
+  padding: 1 rem;
+}
+
+.movie-title h5 {
+  margin: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f4f1e9;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .movie-container {
+  padding-top: 5px;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+
+
+/* .movie-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5 rem;
+}
+
+.movie-info h5, a {
+  margin: 1rem;
+  align-content: center;
+  color: #f4f1e9;
+} */
+
+
+/* .header {
   top: 0;
   position: fixed;
   background-color: #2b463c;
@@ -40,7 +99,6 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding-left: 10px; */
 }
 
 .headercontent {
@@ -55,7 +113,7 @@ nav ul {
 nav ul li {
   list-style: none;
   margin-right: 1rem;
-}
+} */
 
 /* .dkbtngrp {
   padding-left: 20px;
@@ -97,53 +155,3 @@ nav ul li a:focus {
 nav ul li a:focus::before {
   width: 0%;
 } */
-
-
-.movie {
-  background-color: #020f14;
-  border-radius: 4px;
-  box-shadow: 1px 1px 3px #ffffff;
-  overflow: hidden;
-  margin: 1rem;
-  width: 250px;
-}
-
-.movie img {
-  width: 100%;
-  height: 300px;
-}
-
-/* .movie-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5 rem;
-}
-
-.movie-info h5, a {
-  margin: 1rem;
-  align-content: center;
-  color: #f4f1e9;
-} */
-
-.movie-title {
-  align-items: center;
-  padding: 1 rem;
-}
-
-.movie-title h5 {
-  margin: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #f4f1e9;
-}
-
-.movie-container {
-  padding-top: 5px;
-  /* padding-left: 5%;
-  padding-right: 5%; */
-  display: flex;
-  flex-wrap: wrap;
-}
-
