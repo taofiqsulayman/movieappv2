@@ -109,9 +109,7 @@ const Main = () => {
     fetch(API) 
     .then((res) => res.json())
     .then((data) => {
-
       setLoading(false);
-      console.log(data);
       setMovies(data.results);
     });
   };
@@ -126,11 +124,6 @@ const handleChange = (e) => {
   setSearchTerm(e.target.value);
 }
 
-// const clearSearch = (e) => {
-//   document.getElementById('searchbox').value = '';
-//   document.getElementById('searchbox').innerText = "";
-//   goHome();
-// }
 
 const fetchSearch = (e) => {
   e.preventDefault();
@@ -144,15 +137,6 @@ const fetchSearch = (e) => {
 
 
 };
-
-
-// const handleKeypress = (e) => {
-//   //it triggers by pressing the enter key
-// if (e.keyCode === 13 || e.key === "Enter") {
-//   fetchSearch();
-// }
-// };
-
 
 const goHome = (e) => {
   getMovies (FEATURED_API);
@@ -234,7 +218,7 @@ if (loading) {
                 <Button color='other' variant="text" sx={{ display: { xs: "none", sm: "block" }, textTransform: 'none' }} onClick={goHome}>
                   <Typography ml={0} variant='h6'>TMDb</Typography>
                 </Button>
-                {/* <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}> MOVIES </Typography> */}
+
                 <HomeIcon  onClick={goHome} sx={{ display: { xs: "block", sm: "none" } }} />
 
                 <Categories>
@@ -253,8 +237,7 @@ if (loading) {
                     </InputAdornment>
                   }
                   />
-                    {/* <SearchIcon sx={{ color: 'secondary' }} onClick={fetchSearch} />
-                    <BackspaceIcon onClick={clearSearch} /> */}
+
                 </Search>
 
                 <UserBox onClick={(e) => setOpen(true)}>
