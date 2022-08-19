@@ -105,9 +105,6 @@ const Movie = ({title, poster_path, overview, release_date, vote_average, vote_c
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      // setCasts(data.results);
-      // cut the first 10 cast members
       setCasts(data.cast.slice(0, 10));
     });
   };
